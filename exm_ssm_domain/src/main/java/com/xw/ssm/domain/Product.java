@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
+ * 产品表
  * @author xw
  * @date 2019/5/14 10:40
  */
