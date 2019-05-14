@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>exm_ssm_domain</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.xw.exm_ssm</groupId>
+            <artifactId>exm_ssm_utils</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
