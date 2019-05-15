@@ -1,5 +1,7 @@
 package com.xw.ssm.domain;
 
+import com.xw.ssm.utils.DateUtils;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,10 +16,15 @@ public class Orders {
     private Date orderTime;
     private String orderTimeStr;
     private int orderStatus;
+    private String orderStatusStr;
     private int peopleCount;
     private Product product;
+    private Integer productId;
+    private String productName;
+    private Double productPrice;
     private List<Traveller> travellers;
     private Member member;
+    private Integer memberId;
     private Integer payType;
     private String payTypeStr;
     private String orderDesc;
@@ -47,6 +54,9 @@ public class Orders {
     }
 
     public String getOrderTimeStr() {
+        if (orderTime != null){
+            orderTimeStr = DateUtils.date2String(orderTime,"yyyy-MM-dd HH:mm");
+        }
         return orderTimeStr;
     }
 
@@ -103,6 +113,16 @@ public class Orders {
     }
 
     public String getPayTypeStr() {
+        if (payType != null){
+            if (payType == 0){
+                payTypeStr = "支付宝";
+            }else if (payType == 1){
+                payTypeStr = "微信";
+            }
+            if (payType == 2){
+                payTypeStr = "其他";
+            }
+        }
         return payTypeStr;
     }
 
@@ -116,5 +136,51 @@ public class Orders {
 
     public void setOrderDesc(String orderDesc) {
         this.orderDesc = orderDesc;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getOrderStatusStr() {
+        if (orderStatus == 0){
+            orderStatusStr = "未支付";
+        }
+        if (orderStatus == 1){
+            orderStatusStr = "已支付";
+        }
+        return orderStatusStr;
+    }
+
+    public void setOrderStatusStr(String orderStatusStr) {
+        this.orderStatusStr = orderStatusStr;
     }
 }

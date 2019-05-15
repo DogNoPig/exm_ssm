@@ -6,19 +6,11 @@ package com.xw.ssm.domain;
  * @date 2019-05-14 21:57
  */
 public class Member {
-    private String id;
+    private Integer id;
     private String name;
     private String nickname;
     private String phoneNum;
     private String email;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -50,5 +42,13 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

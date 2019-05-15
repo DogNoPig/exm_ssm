@@ -11,7 +11,7 @@ import java.util.Date;
  * @date 2019/5/14 10:40
  */
 public class Product {
-    private String id; // 主键
+    private Integer id; // 主键
     private String productNum; // 编号 唯一
     private String productName; // 名称
     private String cityName; // 出发城市
@@ -23,13 +23,7 @@ public class Product {
     private Integer productStatus; // 状态 0 关闭 1 开启
     private String productStatusStr;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProductNum() {
         return productNum;
@@ -112,5 +106,13 @@ public class Product {
 
     public void setProductStatusStr(String productStatusStr) {
         this.productStatusStr = productStatusStr;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
