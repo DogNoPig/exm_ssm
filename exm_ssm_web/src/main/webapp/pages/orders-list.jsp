@@ -242,11 +242,11 @@
 								<tbody>
 
 
-									<c:forEach items="${ordersList}" var="orders">
+									<c:forEach items="${ordersList}" var="orders" varStatus="i">
 
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
-											<td>${orders.id }</td>
+											<td>${i.index+1}</td>
 											<td>${orders.orderNum }</td>
 											<td>${orders.product.productName }</td>
 											<td>${orders.product.productPrice }</td>
