@@ -27,6 +27,6 @@ public class OrdersServiceImpl implements IOrdersService {
     @Override
     public List<Orders> findAllByPage(Integer page, Integer pageSize) {
         PageHelper.startPage(page, pageSize);
-        return ordersDao.findAllByPage();
+        return ordersDao.findAll();
     }
 }
