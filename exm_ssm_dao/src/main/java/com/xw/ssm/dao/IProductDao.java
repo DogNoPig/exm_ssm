@@ -14,4 +14,7 @@ public interface IProductDao {
     //保存新的产品信息
     @Insert("insert into t_xw_product(PRODUCT_NUM,PRODUCT_NAME,CITY_NAME,DEPARTURE_TIME,PRODUCT_PRICE,PRODUCT_DESC,PRODUCT_STATUS) values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
     void save(Product product);
+
+    @Select("select ID as id,PRODUCT_NUM as productNum,PRODUCT_NAME as productName,CITY_NAME as cityName,DEPARTURE_TIME as departureTime,PRODUCT_PRICE as productPrice,PRODUCT_DESC as productDesc,PRODUCT_STATUS as productStatus from t_xw_product where ID = #{id}")
+    Product findById(Integer id) throws Exception;
 }

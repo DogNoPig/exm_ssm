@@ -1,11 +1,10 @@
 package com.xw.ssm.dao;
 
+import com.xw.ssm.domain.Member;
 import com.xw.ssm.domain.Orders;
 import com.xw.ssm.domain.Product;
-import org.apache.ibatis.annotations.One;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import com.xw.ssm.domain.Traveller;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface IOrdersDao {
      * @param ordersId
      * @return
      */
-    @Select("select * from t_xw_order where id = #{ordersId}")
+     @Select("select * from t_xw_order where ID = #{ordersId}")
     @Results({
             @Result(id=true,column = "ID",property = "id"),
             @Result(column = "ORDER_NUM",property = "orderNum"),
@@ -24,10 +23,12 @@ public interface IOrdersDao {
             @Result(column = "PEOPLE_COUNT",property = "peopleCount"),
             @Result(column = "PAY_TYPE",property = "payType"),
             @Result(column = "ORDER_DESC",property = "orderDesc"),
-            @Result(column = "PRODUCT_ID",property = "product",javaType = Product.class,one = @One(select =
-                    "com.xw.ssm.dao.IProductDao.findById"))
+            @Result(column = "PRODUCT_ID",property = "product",javaType = Product.class,one = @One(select = "com.xw.ssm.dao.IProductDao.findById")),
+            @Result(column = "MEMBER_ID",property = "member",javaType = Member.class,one = @One(select = "com.xw.ssm.dao.IMemberDao.findById")),
+            @Result(column = "id",property = "travellers",javaType = java.util.List.class,many = @Many(select = "com.xw.ssm.dao.ITravellerDao.findByOrdersId"))
     })
     Orders findById(Integer ordersId) throws Exception;
+
     @Select("select * from t_xw_order")
     @Results({
             @Result(id=true,column = "ID",property = "id"),
@@ -37,8 +38,8 @@ public interface IOrdersDao {
             @Result(column = "PEOPLE_COUNT",property = "peopleCount"),
             @Result(column = "PAY_TYPE",property = "payType"),
             @Result(column = "ORDER_DESC",property = "orderDesc"),
-            @Result(column = "PRODUCT_ID",property = "product",javaType = Product.class,one = @One(select =
-                    "com.xw.ssm.dao.IProductDao.findById"))
+            @Result(column = "PRODUCT_ID",property = "product",javaType = Product.class,one = @One(select = "com.xw.ssm.dao.IProductDao.findById")),
+            @Result(column = "MEMBER_ID",property = "member",javaType = Member.class,one = @One(select = "com.xw.ssm.dao.IMemberDao.findById"))
     })
-    List<Orders> findAllByPage();
+    List<Orders> findAll();
 }

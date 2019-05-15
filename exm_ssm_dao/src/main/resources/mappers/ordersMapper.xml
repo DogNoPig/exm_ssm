@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xw.ssm.dao.IOrdersDao">
+    <select id="findAll" resultType="com.xw.ssm.domain.Orders">
+        SELECT
+            o.ID id,
+            o.ORDER_NUM orderNum,
+            o.ORDER_TIME orderTime,
+            o.PEOPLE_COUNT peopleCount,
+            o.ORDER_DESC orderDesc,
+            o.PAY_TYPE payType,
+            o.ORDER_STATUS orderStatus,
+            o.PRODUCT_ID productId,
+            p.PRODUCT_NAME productName,
+            p.PRODUCT_PRICE productPrice,
+            o.MEMBER_ID memberId
+        FROM
+            t_xw_order o
+                LEFT JOIN t_xw_product p ON o.PRODUCT_ID = p.ID
+    </select>
+    <select id="findById" resultType="com.xw.ssm.domain.Orders" parameterType="int">
+        SELECT
+            o.ID id,
+            o.ORDER_NUM orderNum,
+            o.ORDER_TIME orderTime,
+            o.PEOPLE_COUNT peopleCount,
+            o.ORDER_DESC orderDesc,
+            o.PAY_TYPE payType,
+            o.ORDER_STATUS orderStatus,
+            o.PRODUCT_ID productId,
+            p.PRODUCT_NAME productName,
+            p.PRODUCT_PRICE productPrice,
+            o.MEMBER_ID memberId
+        FROM
+            t_xw_order o
+                LEFT JOIN t_xw_product p ON o.PRODUCT_ID = p.ID
+        where
+            o.ID = #{ordersId}
+    </select>
+</mapper>
