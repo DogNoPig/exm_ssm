@@ -22,4 +22,9 @@ public class IUserServiceImpl implements IUserInfoService {
     public List<UserInfo> findAll() {
         return userInfoDao.findAll();
     }
+
+    @Override
+    public void save(UserInfo userInfo) {
+
+    }
 }

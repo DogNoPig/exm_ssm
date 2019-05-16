@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 192.168.1.248
-Source Server Version : 50510
-Source Host           : 192.168.1.248:3306
+Source Server         : xw
+Source Server Version : 60011
+Source Host           : localhost:3306
 Source Database       : xw_taes
 
 Target Server Type    : MYSQL
-Target Server Version : 50510
+Target Server Version : 60011
 File Encoding         : 65001
 
-Date: 2019-05-16 15:55:52
+Date: 2019-05-16 23:52:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for t_xw_order
+-- Table structure for `t_xw_order`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_order`;
 CREATE TABLE `t_xw_order` (
@@ -39,7 +39,7 @@ INSERT INTO `t_xw_order` VALUES ('1', '111111', '2019-05-15 10:17:35', '12', '�
 INSERT INTO `t_xw_order` VALUES ('2', '222222', '2019-05-15 13:54:03', '10', '南京三日游', '0', '0', '2', '1');
 
 -- ----------------------------
--- Table structure for t_xw_order_passenger
+-- Table structure for `t_xw_order_passenger`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_order_passenger`;
 CREATE TABLE `t_xw_order_passenger` (
@@ -57,7 +57,7 @@ INSERT INTO `t_xw_order_passenger` VALUES ('2', '1', '2');
 INSERT INTO `t_xw_order_passenger` VALUES ('3', '2', '1');
 
 -- ----------------------------
--- Table structure for t_xw_passenger
+-- Table structure for `t_xw_passenger`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_passenger`;
 CREATE TABLE `t_xw_passenger` (
@@ -78,7 +78,7 @@ INSERT INTO `t_xw_passenger` VALUES ('1', '熊伟', '男', '18827636379', '0', '
 INSERT INTO `t_xw_passenger` VALUES ('2', '李四', '女', '15327183702', '1', '462012', '1');
 
 -- ----------------------------
--- Table structure for t_xw_product
+-- Table structure for `t_xw_product`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_product`;
 CREATE TABLE `t_xw_product` (
@@ -100,7 +100,7 @@ INSERT INTO `t_xw_product` VALUES ('1', '10001', '地府一日游', '武汉', '2
 INSERT INTO `t_xw_product` VALUES ('2', '1111111111111', 'wqeeeeeee', 'asdasdad', '2019-05-14 17:05:00', '12.00', '呜呜', '1');
 
 -- ----------------------------
--- Table structure for t_xw_s_log
+-- Table structure for `t_xw_s_log`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_log`;
 CREATE TABLE `t_xw_s_log` (
@@ -119,7 +119,7 @@ CREATE TABLE `t_xw_s_log` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for t_xw_s_permission
+-- Table structure for `t_xw_s_permission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_permission`;
 CREATE TABLE `t_xw_s_permission` (
@@ -134,7 +134,7 @@ CREATE TABLE `t_xw_s_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for t_xw_s_role
+-- Table structure for `t_xw_s_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_role`;
 CREATE TABLE `t_xw_s_role` (
@@ -151,7 +151,7 @@ INSERT INTO `t_xw_s_role` VALUES ('1', 'ADMIN', '管理员用户');
 INSERT INTO `t_xw_s_role` VALUES ('2', 'USERS', '普通用户');
 
 -- ----------------------------
--- Table structure for t_xw_s_role_permission
+-- Table structure for `t_xw_s_role_permission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_role_permission`;
 CREATE TABLE `t_xw_s_role_permission` (
@@ -166,7 +166,7 @@ CREATE TABLE `t_xw_s_role_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for t_xw_s_user
+-- Table structure for `t_xw_s_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_user`;
 CREATE TABLE `t_xw_s_user` (
@@ -177,15 +177,18 @@ CREATE TABLE `t_xw_s_user` (
   `PHONE_NUM` varchar(30) DEFAULT NULL COMMENT '电话',
   `STATUS` int(11) DEFAULT NULL COMMENT '状态0 未开启 1 开启',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_user
 -- ----------------------------
-INSERT INTO `t_xw_s_user` VALUES ('1', '1364980105@qq.com', 'xionwei', '123', '18827636379', '1');
+INSERT INTO `t_xw_s_user` VALUES ('1', '1364980105@qq.com', 'xionwei', '$2a$10$HRopHMtoxKmV5GSRUoRZ2u2lVVB0nsGKlan0Gb5ff3sMD9Ifc92ci', '18827636379', '1');
+INSERT INTO `t_xw_s_user` VALUES ('2', '7749@163.com', '李四', '123', '17783504597', '1');
+INSERT INTO `t_xw_s_user` VALUES ('3', '1314520@163.com', null, '$2a$10$173uN7M4.L6mJ3EA9P6HhOp0kamzf47DgXLlBFxr8bmc6LPAYd7PK', '15327183702', '1');
+INSERT INTO `t_xw_s_user` VALUES ('4', '13640000@qq.com', 'ss', '$2a$10$fNVhEDxG2Myg0AFZQVY0buiVYIAMwDs.FAKeaWrrb.o73so.GTxSi', '15327183702', '1');
 
 -- ----------------------------
--- Table structure for t_xw_s_user_role
+-- Table structure for `t_xw_s_user_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_s_user_role`;
 CREATE TABLE `t_xw_s_user_role` (
@@ -193,15 +196,17 @@ CREATE TABLE `t_xw_s_user_role` (
   `USER_ID` int(11) DEFAULT NULL COMMENT '用户id',
   `ROLE_ID` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_user_role
 -- ----------------------------
 INSERT INTO `t_xw_s_user_role` VALUES ('1', '1', '1');
+INSERT INTO `t_xw_s_user_role` VALUES ('2', '2', '1');
+INSERT INTO `t_xw_s_user_role` VALUES ('3', '4', '1');
 
 -- ----------------------------
--- Table structure for t_xw_vip_user
+-- Table structure for `t_xw_vip_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_xw_vip_user`;
 CREATE TABLE `t_xw_vip_user` (
@@ -219,7 +224,7 @@ CREATE TABLE `t_xw_vip_user` (
 INSERT INTO `t_xw_vip_user` VALUES ('1', '熊伟', '小熊', '18827636379', '1364980105@qq.com');
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (

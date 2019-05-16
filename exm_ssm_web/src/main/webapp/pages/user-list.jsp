@@ -149,7 +149,7 @@
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${user.id }</td>
-											<td>${user.username }</td>
+											<td>${user.userName }</td>
 											<td>${user.email }</td>
 											<td>${user.phoneNum }</td>
 											<td>${user.statusStr }</td>											

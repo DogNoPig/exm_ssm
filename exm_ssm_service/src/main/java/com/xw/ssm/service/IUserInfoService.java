@@ -10,4 +10,10 @@ public interface IUserInfoService {
      * @return
      */
     List<UserInfo> findAll();
+
+    /**
+     * 保存新建用户的信息
+     * @param userInfo
+     */
+    void save(UserInfo userInfo);
 }
