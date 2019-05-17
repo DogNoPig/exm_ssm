@@ -139,7 +139,7 @@
 								</thead>
 
 								<tr data-tt-id="0">
-									<td colspan="2">${user.username}</td>
+									<td colspan="2">${user.userName}</td>
 								</tr>
 
 								<tbody>

@@ -9,4 +9,11 @@ public interface IUserService extends UserDetailsService {
      * @param userInfo
      */
     void save(UserInfo userInfo);
+
+    /**
+     * 获取用户详细信息
+     * @param id
+     * @return
+     */
+    UserInfo findById(Integer id);
 }
