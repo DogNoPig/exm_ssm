@@ -1,5 +1,6 @@
 package com.xw.ssm.controller;
 
+import com.xw.ssm.domain.Role;
 import com.xw.ssm.domain.UserInfo;
 import com.xw.ssm.service.IUserInfoService;
 import com.xw.ssm.service.IUserService;
@@ -51,4 +52,22 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(@RequestParam("id") Integer id){
+        ModelAndView mv = new ModelAndView();
+        //根据用户id 查询用户信息
+        UserInfo userInfo = userService.findById(id);
+        //获取该用户未拥有的角色
+        List<Role> roleList = userService.findOtherRole(id);
+        mv.addObject("user",userInfo);
+        mv.addObject("roleList",roleList);
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(value = "userId",required = true)Integer userId,@RequestParam(value = "ids",required = true) Integer roleIds[]){
+        userService.addRoleToUser(userId,roleIds);
+        return "redirect:/user/findAll.do";
+    }
 }
