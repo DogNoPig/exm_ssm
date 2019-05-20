@@ -55,5 +55,5 @@ public interface IUserDao {
     List<Role> findOtherRole(Integer id);
 
     @Insert("INSERT INTO t_xw_s_user_role(USER_ID,ROLE_ID) VALUES(#{userId},#{roleId})")
-    void addRoleToUser(Integer userId, Integer roleId);
+    void addRoleToUser(@Param("userId")Integer userId,@Param("roleId")Integer roleId);
 }

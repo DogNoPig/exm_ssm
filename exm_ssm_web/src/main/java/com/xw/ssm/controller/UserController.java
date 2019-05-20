@@ -5,6 +5,7 @@ import com.xw.ssm.domain.UserInfo;
 import com.xw.ssm.service.IUserInfoService;
 import com.xw.ssm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("/findAll.do")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ModelAndView findAll(){
         ModelAndView mv = new ModelAndView();
         List<UserInfo> userInfos = userInfoService.findAll();
@@ -36,7 +38,9 @@ public class UserController {
         return mv;
     }
 
+
     @RequestMapping("/save.do")
+    @PreAuthorize("authentication.principal.username == 'xionwei'")
     public String save(UserInfo userInfo){
         userService.save(userInfo);
         return "redirect:/user/findAll.do";
