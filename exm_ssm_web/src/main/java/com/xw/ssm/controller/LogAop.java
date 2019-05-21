@@ -1,6 +1,7 @@
 package com.xw.ssm.controller;
 
 import com.xw.ssm.domain.SysLog;
+import com.xw.ssm.service.ISysLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.*;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Date;
 
@@ -27,6 +26,8 @@ import java.util.Date;
 @Aspect
 public class LogAop {
 
+    @Autowired
+    private ISysLogService sysLogService;
     @Autowired
     private HttpServletRequest request;
     //开始时间
@@ -61,7 +62,7 @@ public class LogAop {
     //后置通知
     @After("execution(* com.xw.ssm.controller.*.*(..))")
     public void doAfter(JoinPoint jp){
-        Long time = new Date().getTime() - visitTime.getTime();//获取执行时长
+        Long time = System.currentTimeMillis() - visitTime.getTime();//获取执行时长
 
         //获取URL
         if (clazz != null && method != null && clazz != LogAop.class){
@@ -71,21 +72,35 @@ public class LogAop {
                 String[] classValue = classAnnotation.value();
                 //2.获取方法上的@RequestMapping(XXX)的值
                 RequestMapping methodAnnotation = method.getAnnotation(RequestMapping.class);
-                if (methodAnnotation != null){
+                if (methodAnnotation != null && !classValue[0].equals("/sysLog")){
                     String[] methodValue = methodAnnotation.value();
                     url = classValue[0] + methodValue[0];
+
+
+                    //获取访问的ip地址
+                    String ip = request.getRemoteAddr();
+
+                    //获取当前操作的用户
+                    SecurityContext context = SecurityContextHolder.getContext();//从上下文获取登录的用户
+                    User user = (User) context.getAuthentication().getPrincipal();
+                    String userName = user.getUsername();
+
+                    //封装日志信息
+                    SysLog sysLog = new SysLog();
+                    sysLog.setExecutionTime(time);
+                    sysLog.setIp(ip);
+                    sysLog.setUrl(url);
+                    sysLog.setUserName(userName);
+                    sysLog.setVisitTime(visitTime);
+                    sysLog.setMethod("[类名] " + clazz.getName() + "[方法名] " + method.getName());
+
+                    //记录日志操作
+                    sysLogService.save(sysLog);
                 }
             }
         }
-
-        //获取访问的ip地址
-        String ip = request.getRemoteAddr();
-
-        //获取当前操作的用户
-        SecurityContext context = SecurityContextHolder.getContext();//从上下文获取登录的用户
-        User user = (User) context.getAuthentication().getPrincipal();
-        String userName = user.getUsername();
     }
+
 
 
 
