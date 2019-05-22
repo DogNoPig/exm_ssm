@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50510
 File Encoding         : 65001
 
-Date: 2019-05-17 16:56:34
+Date: 2019-05-22 15:31:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -112,11 +112,21 @@ CREATE TABLE `t_xw_s_log` (
   `EXECUTION_TIME` int(11) DEFAULT NULL COMMENT '执行时长',
   `METHOD` varchar(200) DEFAULT NULL COMMENT '访问方法',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_log
 -- ----------------------------
+INSERT INTO `t_xw_s_log` VALUES ('1', '2019-05-21 09:58:37', 'xiongwei', '0:0:0:0:0:0:0:1', '/user/findAll.do', '33', '[类名] com.xw.ssm.controller.UserController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('2', '2019-05-21 10:01:53', 'xiongwei', '0:0:0:0:0:0:0:1', '/user/findAll.do', '5', '[类名] com.xw.ssm.controller.UserController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('3', '2019-05-21 10:01:56', 'xiongwei', '0:0:0:0:0:0:0:1', '/orders/findAll.do', '68', '[类名] com.xw.ssm.controller.OrdersController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('4', '2019-05-21 10:05:26', 'xiongwei', '0:0:0:0:0:0:0:1', '/user/findAll.do', '6', '[类名] com.xw.ssm.controller.UserController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('5', '2019-05-21 10:05:28', 'xiongwei', '0:0:0:0:0:0:0:1', '/product/findAll.do', '16', '[类名] com.xw.ssm.controller.ProductController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('6', '2019-05-21 10:05:30', 'xiongwei', '0:0:0:0:0:0:0:1', '/orders/findAll.do', '14', '[类名] com.xw.ssm.controller.OrdersController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('7', '2019-05-21 10:05:32', 'xiongwei', '0:0:0:0:0:0:0:1', '/permission/findAll.do', '17', '[类名] com.xw.ssm.controller.PermissionController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('8', '2019-05-21 11:02:54', 'xionwei', '0:0:0:0:0:0:0:1', '/product/findAll.do', '29', '[类名] com.xw.ssm.controller.ProductController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('9', '2019-05-21 11:03:05', 'xionwei', '0:0:0:0:0:0:0:1', '/sysLog/findAll.do', '11', '[类名] com.xw.ssm.controller.SysLogController[方法名] findAll');
+INSERT INTO `t_xw_s_log` VALUES ('10', '2019-05-21 11:07:47', 'xionwei', '0:0:0:0:0:0:0:1', '/role/findAll.do', '14', '[类名] com.xw.ssm.controller.RoleController[方法名] findAll');
 
 -- ----------------------------
 -- Table structure for t_xw_s_permission
@@ -152,7 +162,7 @@ CREATE TABLE `t_xw_s_role` (
 -- Records of t_xw_s_role
 -- ----------------------------
 INSERT INTO `t_xw_s_role` VALUES ('1', 'ADMIN', '管理员用户');
-INSERT INTO `t_xw_s_role` VALUES ('2', 'USERS', '普通用户');
+INSERT INTO `t_xw_s_role` VALUES ('2', 'USER', '普通用户');
 INSERT INTO `t_xw_s_role` VALUES ('3', 'hehehe', '就是呵呵一下');
 
 -- ----------------------------
@@ -164,7 +174,7 @@ CREATE TABLE `t_xw_s_role_permission` (
   `ROLE_ID` int(11) DEFAULT NULL COMMENT '角色id',
   `PERMISSION_ID` int(11) DEFAULT NULL COMMENT '权限id',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_role_permission
@@ -172,6 +182,8 @@ CREATE TABLE `t_xw_s_role_permission` (
 INSERT INTO `t_xw_s_role_permission` VALUES ('1', '1', '1');
 INSERT INTO `t_xw_s_role_permission` VALUES ('2', '1', '2');
 INSERT INTO `t_xw_s_role_permission` VALUES ('3', '2', '1');
+INSERT INTO `t_xw_s_role_permission` VALUES ('4', '3', '3');
+INSERT INTO `t_xw_s_role_permission` VALUES ('5', '3', '4');
 
 -- ----------------------------
 -- Table structure for t_xw_s_user
@@ -185,15 +197,16 @@ CREATE TABLE `t_xw_s_user` (
   `PHONE_NUM` varchar(30) DEFAULT NULL COMMENT '电话',
   `STATUS` int(11) DEFAULT NULL COMMENT '状态0 未开启 1 开启',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_user
 -- ----------------------------
-INSERT INTO `t_xw_s_user` VALUES ('1', '1364980105@qq.com', 'xionwei', '$2a$10$HRopHMtoxKmV5GSRUoRZ2u2lVVB0nsGKlan0Gb5ff3sMD9Ifc92ci', '18827636379', '1');
+INSERT INTO `t_xw_s_user` VALUES ('1', '1364980105@qq.com', 'xiongwei', '$2a$10$HRopHMtoxKmV5GSRUoRZ2u2lVVB0nsGKlan0Gb5ff3sMD9Ifc92ci', '18827636379', '1');
 INSERT INTO `t_xw_s_user` VALUES ('2', '7749@163.com', '李四', '123', '17783504597', '1');
 INSERT INTO `t_xw_s_user` VALUES ('3', '1314520@163.com', 'hf', '$2a$10$173uN7M4.L6mJ3EA9P6HhOp0kamzf47DgXLlBFxr8bmc6LPAYd7PK', '15327183702', '1');
-INSERT INTO `t_xw_s_user` VALUES ('4', '13640000@qq.com', 'ss', '$2a$10$fNVhEDxG2Myg0AFZQVY0buiVYIAMwDs.FAKeaWrrb.o73so.GTxSi', '15327183702', '1');
+INSERT INTO `t_xw_s_user` VALUES ('4', '13640000@qq.com', 'xionwei', '$2a$10$fNVhEDxG2Myg0AFZQVY0buiVYIAMwDs.FAKeaWrrb.o73so.GTxSi', '15327183702', '1');
+INSERT INTO `t_xw_s_user` VALUES ('5', '1364980105@qq.com', '熊大', '$2a$10$8Jh.l6.QEMOC0F1al5MofuTspxXWDw1RwFEXpdhCpX0R5GDiPTnKu', '1223554644', '1');
 
 -- ----------------------------
 -- Table structure for t_xw_s_user_role
@@ -204,7 +217,7 @@ CREATE TABLE `t_xw_s_user_role` (
   `USER_ID` int(11) DEFAULT NULL COMMENT '用户id',
   `ROLE_ID` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_xw_s_user_role
@@ -212,6 +225,7 @@ CREATE TABLE `t_xw_s_user_role` (
 INSERT INTO `t_xw_s_user_role` VALUES ('1', '1', '1');
 INSERT INTO `t_xw_s_user_role` VALUES ('2', '1', '2');
 INSERT INTO `t_xw_s_user_role` VALUES ('3', '4', '2');
+INSERT INTO `t_xw_s_user_role` VALUES ('5', '4', '3');
 
 -- ----------------------------
 -- Table structure for t_xw_vip_user
